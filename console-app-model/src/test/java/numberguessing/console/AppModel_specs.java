@@ -110,18 +110,18 @@ public class AppModel_specs {
 
         assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
     }
-//
-//    @Test
-//    void sut_correctly_prints_one_guess_if_single_player_game_finished() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("1");
-//        sut.flushOutput();
-//        sut.processInput("50");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).contains("1 guess.");
-//    }
+
+    @Test
+    void sut_correctly_prints_one_guess_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains("1 guess.");
+    }
 //
 //    @Test
 //    void sut_prints_select_mode_message_if_single_player_game_finished() {
