@@ -26,14 +26,14 @@ public class AppModel_specs {
         assertFalse(actual);
     }
 
-//    @Test
-//    void sut_correctly_prints_select_mode_message() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
-//                + NEW_LINE + "Enter selection: ");
-//    }
+    @Test
+    void sut_correctly_prints_select_mode_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
+                + NEW_LINE + "Enter selection: ");
+    }
 //
 //    @Test
 //    void sut_correctly_exits() {
