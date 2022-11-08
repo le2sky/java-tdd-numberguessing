@@ -4,11 +4,14 @@ import numberguessing.PositiveIntegerGenerator;
 
 public final class AppModel {
     private final static String NEW_LINE = System.lineSeparator();
+    private boolean completed;
+
     public AppModel(PositiveIntegerGenerator generator) {
+        completed = false;
     }
 
     public boolean isCompleted() {
-        return false;
+        return completed;
     }
 
     public String flushOutput() {
@@ -17,6 +20,7 @@ public final class AppModel {
     }
 
     public void processInput(String input) {
+        if (input.equals("3")) completed = true;
     }
 
 }

@@ -34,16 +34,15 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
                 + NEW_LINE + "Enter selection: ");
     }
-//
-//    @Test
-//    void sut_correctly_exits() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//
-//        sut.processInput("3");
-//
-//        boolean actual = sut.isCompleted();
-//        assertTrue(actual);
-//    }
+    @Test
+    void sut_correctly_exits() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
 //
 //    @Test
 //    void sut_correctly_prints_single_player_game_start_message() {
