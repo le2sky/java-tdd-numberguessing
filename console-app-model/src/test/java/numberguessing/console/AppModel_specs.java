@@ -19,13 +19,13 @@ public class AppModel_specs {
 
     private final static String NEW_LINE = System.lineSeparator();
 
-//    @Test
-//    void sut_is_incompleted_when_it_is_initialized() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        boolean actual = sut.isCompleted();
-//        assertFalse(actual);
-//    }
-//
+    @Test
+    void sut_is_incompleted_when_it_is_initialized() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        boolean actual = sut.isCompleted();
+        assertFalse(actual);
+    }
+
 //    @Test
 //    void sut_correctly_prints_select_mode_message() {
 //        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
