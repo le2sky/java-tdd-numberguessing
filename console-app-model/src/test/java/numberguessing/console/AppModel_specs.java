@@ -43,18 +43,18 @@ public class AppModel_specs {
         boolean actual = sut.isCompleted();
         assertTrue(actual);
     }
-//
-//    @Test
-//    void sut_correctly_prints_single_player_game_start_message() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.flushOutput();
-//        sut.processInput("1");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
-//                + NEW_LINE + "Enter your guess: ");
-//    }
+
+    @Test
+    void sut_correctly_prints_single_player_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("1");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                + NEW_LINE + "Enter your guess: ");
+    }
 //
 //    @ParameterizedTest
 //    @CsvSource({ "50, 40", "30, 29", "89, 9" })
