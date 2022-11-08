@@ -81,20 +81,20 @@ public class AppModel_specs {
 
         assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
-//
-//    @ParameterizedTest
-//    @ValueSource(ints = { 1, 3, 10, 100 })
-//    void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-//        sut.processInput("1");
-//        sut.flushOutput();
-//        int guess = answer;
-//        sut.processInput(Integer.toString(guess));
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).startsWith("Correct! ");
-//    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 3, 10, 100 })
+    void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        int guess = answer;
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
+    }
 //
 //    @ParameterizedTest
 //    @ValueSource(ints = { 1, 10, 100 })
