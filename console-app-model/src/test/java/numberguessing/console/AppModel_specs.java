@@ -135,18 +135,18 @@ public class AppModel_specs {
         assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
                 + NEW_LINE + "Enter selection: ");
     }
-//
-//    @Test
-//    void sut_returns_to_mode_selection_if_single_player_game_finished() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//
-//        sut.processInput("1");
-//        sut.processInput("50");
-//        sut.processInput("3");
-//
-//        boolean actual = sut.isCompleted();
-//        assertTrue(actual);
-//    }
+
+    @Test
+    void sut_returns_to_mode_selection_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        sut.processInput("1");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
 //
 //    @ParameterizedTest
 //    @ValueSource(strings = "1, 10, 100")
