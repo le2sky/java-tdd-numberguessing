@@ -147,22 +147,22 @@ public class AppModel_specs {
         boolean actual = sut.isCompleted();
         assertTrue(actual);
     }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = "1, 10, 100")
-//    void sut_generates_answer_for_each_game(String source) {
-//        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
-//        for (int answer : answers) {
-//            sut.processInput("1");
-//            sut.flushOutput();
-//            sut.processInput(Integer.toString(answer));
-//        }
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).startsWith("Correct! ");
-//    }
+
+    @ParameterizedTest
+    @ValueSource(strings = "100, 10, 1")
+    void sut_generates_answer_for_each_game(String source) {
+        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
+        for (int answer : answers) {
+            sut.processInput("1");
+            sut.flushOutput();
+            sut.processInput(Integer.toString(answer));
+        }
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
+    }
 //
 //    @Test
 //    void sut_correctly_prints_multiplayer_game_setup_message() {
