@@ -246,53 +246,53 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
 
-//    @ParameterizedTest
-//    @CsvSource({ "50, 40, 1, Foo", "30, 29, 2, Bar" })
-//    void sut_correctly_prints_too_low_message_in_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        for (int i = 0; i < fails - 1; i++)
-//            sut.processInput(Integer.toString(guess));
-//        sut.flushOutput();
-//        sut.processInput(Integer.toString(guess));
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).startsWith(lastPlayer + "'s guess is too low." + NEW_LINE);
-//    }
-//
-//    @ParameterizedTest
-//    @CsvSource({ "50, 60, 1, Foo", "9, 81, 2, Bar" })
-//    void sut_correctly_prints_too_high_message_in_multiplayer_game(int answer, int guess, int fails,
-//            String lastPlayer) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        for (int i = 0; i < fails - 1; i++)
-//            sut.processInput(Integer.toString(guess));
-//        sut.flushOutput();
-//        sut.processInput(Integer.toString(guess));
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).contains(lastPlayer + "'s guess is too high." + NEW_LINE);
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(ints = { 1, 10, 100 })
-//    void sut_correctly_prints_correct_message_in_multiplayer_game(int answer) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        sut.flushOutput();
-//        int guess = answer;
-//        sut.processInput(Integer.toString(guess));
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).startsWith("Correct! ");
-//    }
+    @ParameterizedTest
+    @CsvSource({ "50, 40, 1, Foo", "30, 29, 2, Bar" })
+    void sut_correctly_prints_too_low_message_in_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails - 1; i++)
+            sut.processInput(Integer.toString(guess));
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith(lastPlayer + "'s guess is too low." + NEW_LINE);
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "50, 60, 1, Foo", "9, 81, 2, Bar" })
+    void sut_correctly_prints_too_high_message_in_multiplayer_game(int answer, int guess, int fails,
+            String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails - 1; i++)
+            sut.processInput(Integer.toString(guess));
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(lastPlayer + "'s guess is too high." + NEW_LINE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 10, 100 })
+    void sut_correctly_prints_correct_message_in_multiplayer_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        sut.flushOutput();
+        int guess = answer;
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
+    }
 //
 //    @ParameterizedTest
 //    @CsvSource({ "0, Foo", "1, Bar", "2, Baz", "99, Foo", "100, Bar" })

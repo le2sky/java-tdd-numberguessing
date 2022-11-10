@@ -52,14 +52,27 @@ public final class AppModel {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray();
             outputBuffer.append("I'm thinking of a number between 1 and 100.");
-            return getMultiplayerGameProcessor(players, 1);
+            int answer = generator.generateLessThanOrEqualToHundread();
+            return getMultiplayerGameProcessor(players, answer, 1);
         };
     }
 
-    private Processor getMultiplayerGameProcessor(Object[] players, int tries) {
-        outputBuffer.append("Enter " + players[(tries - 1) % players.length] + "'s guess: ");
-        return input -> getMultiplayerGameProcessor(players, tries + 1);
+    private Processor getMultiplayerGameProcessor(Object[] players, int answer, int tries) {
+        Object player = players[(tries - 1) % players.length];
+        outputBuffer.append("Enter " + player + "'s guess: ");
+        return input -> {
+            int guess = Integer.parseInt(input);
+            if (guess < answer) {
+                outputBuffer.append(player + "'s guess is too low." + NEW_LINE);
+            } else if (guess > answer) {
+                outputBuffer.append(player + "'s guess is too high." + NEW_LINE);
+            } else {
+                outputBuffer.append("Correct! ");
+            }
+            return getMultiplayerGameProcessor(players, answer, tries + 1);
+        };
     }
+
 
     private Processor getSinglePlayerGameProcessor(int answer, int tries) {
         return input -> {
