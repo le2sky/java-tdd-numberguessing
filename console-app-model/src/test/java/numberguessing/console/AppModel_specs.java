@@ -185,7 +185,7 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
     @ParameterizedTest
@@ -293,7 +293,7 @@ public class AppModel_specs {
 
         assertThat(actual).startsWith("Correct! ");
     }
-//
+
     @ParameterizedTest
     @CsvSource({ "0, Foo", "1, Bar", "2, Baz", "99, Foo", "100, Bar" })
     void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {

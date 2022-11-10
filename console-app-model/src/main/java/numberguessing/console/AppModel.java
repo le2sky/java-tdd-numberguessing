@@ -34,13 +34,26 @@ public final class AppModel {
         processor = processor.run(input);
     }
 
+
+    private void println(String message) {
+        outputBuffer.append(message + NEW_LINE);
+    }
+
+    private void print(String message) {
+        outputBuffer.append(message);
+    }
+
     private Processor processModeSelection(String input) {
         if (input.equals("1")) {
-            outputBuffer.append("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ");
+            println("Single player game");
+            println("I'm thinking of a number between 1 and 100.");
+            print("Enter your guess: ");
             int answer = generator.generateLessThanOrEqualToHundread();
             return getSinglePlayerGameProcessor(answer, 1);
         } else if (input.equals("2")) {
-            outputBuffer.append("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+            println("Multi" + "player game");
+            print("Enter player names separated with commas: ");
+
             return startMultiplayerGame();
         } else {
             completed = true;
@@ -51,7 +64,7 @@ public final class AppModel {
     private Processor startMultiplayerGame() {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray();
-            outputBuffer.append("I'm thinking of a number between 1 and 100.");
+            println("I'm thinking of a number between 1 and 100.");
             int answer = generator.generateLessThanOrEqualToHundread();
             return getMultiplayerGameProcessor(players, answer, 1);
         };
@@ -59,19 +72,19 @@ public final class AppModel {
 
     private Processor getMultiplayerGameProcessor(Object[] players, int answer, int tries) {
         Object player = players[(tries - 1) % players.length];
-        outputBuffer.append("Enter " + player + "'s guess: ");
+        print("Enter " + player + "'s guess: ");
         return input -> {
             int guess = Integer.parseInt(input);
             if (guess < answer) {
-                outputBuffer.append(player + "'s guess is too low." + NEW_LINE);
+                println(player + "'s guess is too low.");
                 return getMultiplayerGameProcessor(players, answer, tries + 1);
             } else if (guess > answer) {
-                outputBuffer.append(player + "'s guess is too high." + NEW_LINE);
+                println(player + "'s guess is too high.");
                 return getMultiplayerGameProcessor(players, answer, tries + 1);
             } else {
-                outputBuffer.append("Correct! ");
-                outputBuffer.append(player + " wins." + NEW_LINE);
-                outputBuffer.append(SELECT_MODE_MESSAGE);
+                print("Correct! ");
+                println(player + " wins.");
+                print(SELECT_MODE_MESSAGE);
 
                 return this::processModeSelection;
             }
@@ -83,13 +96,16 @@ public final class AppModel {
         return input -> {
             int guess = Integer.parseInt(input);
             if (guess < answer) {
-                outputBuffer.append("Your guess is too low." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too low.");
+                print("Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else if (guess > answer) {
-                outputBuffer.append("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too high.");
+                print("Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else {
-                outputBuffer.append("Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE);
+                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
+                print(SELECT_MODE_MESSAGE);
                 return this::processModeSelection;
             }
         };
