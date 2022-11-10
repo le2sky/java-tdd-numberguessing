@@ -174,18 +174,18 @@ public class AppModel_specs {
 
         assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
     }
-//
-//    @Test
-//    void sut_correctly_prints_multiplayer_game_start_message() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("2");
-//        sut.flushOutput();
-//        sut.processInput("Foo, Bar");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
-//    }
+
+    @Test
+    void sut_correctly_prints_multiplayer_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput("Foo, Bar");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+    }
 //
 //    @ParameterizedTest
 //    @CsvSource({ "Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar" })

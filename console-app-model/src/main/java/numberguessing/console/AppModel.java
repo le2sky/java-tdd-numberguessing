@@ -36,7 +36,10 @@ public final class AppModel {
             return getSinglePlayerGameProcessor(answer, 1);
         } else if (input.equals("2")) {
             output = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
-            return null;
+            return input2 -> {
+                output = "I'm thinking of a number between 1 and 100.";
+                return null;
+            };
         } else {
             completed = true;
             return null;
