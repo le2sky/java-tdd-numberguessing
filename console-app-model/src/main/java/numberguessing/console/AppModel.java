@@ -68,6 +68,7 @@ public final class AppModel {
                 outputBuffer.append(player + "'s guess is too high." + NEW_LINE);
             } else {
                 outputBuffer.append("Correct! ");
+                outputBuffer.append(player + " wins." + NEW_LINE);
             }
             return getMultiplayerGameProcessor(players, answer, tries + 1);
         };

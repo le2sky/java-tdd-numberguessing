@@ -294,22 +294,22 @@ public class AppModel_specs {
         assertThat(actual).startsWith("Correct! ");
     }
 //
-//    @ParameterizedTest
-//    @CsvSource({ "0, Foo", "1, Bar", "2, Baz", "99, Foo", "100, Bar" })
-//    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        for (int i = 0; i < fails; i++)
-//            sut.processInput("30");
-//        sut.flushOutput();
-//        sut.processInput("50");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).contains(winner + " wins." + NEW_LINE);
-//    }
-//
+    @ParameterizedTest
+    @CsvSource({ "0, Foo", "1, Bar", "2, Baz", "99, Foo", "100, Bar" })
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails; i++)
+            sut.processInput("30");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(winner + " wins." + NEW_LINE);
+    }
+
 //    @Test
 //    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
 //        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
