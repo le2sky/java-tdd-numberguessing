@@ -34,6 +34,7 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
                 + NEW_LINE + "Enter selection: ");
     }
+
     @Test
     void sut_correctly_exits() {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
@@ -57,7 +58,7 @@ public class AppModel_specs {
     }
 
     @ParameterizedTest
-    @CsvSource({ "50, 40", "30, 29", "89, 9" })
+    @CsvSource({"50, 40", "30, 29", "89, 9"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
@@ -70,7 +71,7 @@ public class AppModel_specs {
     }
 
     @ParameterizedTest
-    @CsvSource({ "50, 60", "80, 81" })
+    @CsvSource({"50, 60", "80, 81"})
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
@@ -83,7 +84,7 @@ public class AppModel_specs {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { 1, 3, 10, 100 })
+    @ValueSource(ints = {1, 3, 10, 100})
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
@@ -97,7 +98,7 @@ public class AppModel_specs {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { 1, 10, 100 })
+    @ValueSource(ints = {1, 10, 100})
     void sut_correctly_prints_guess_count_if_single_player_game_finished(int fails) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("1");
@@ -186,33 +187,33 @@ public class AppModel_specs {
 
         assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
     }
-//
-//    @ParameterizedTest
-//    @CsvSource({ "Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar" })
-//    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("2");
-//        sut.flushOutput();
-//        sut.processInput(String.join(", ", player1, player2, player3));
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
-//    }
-//
-//    @ParameterizedTest
-//    @CsvSource({ "Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar" })
-//    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3) {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("2");
-//        sut.processInput(String.join(", ", player1, player2, player3));
-//        sut.flushOutput();
-//        sut.processInput("10");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).endsWith("Enter " + player2 + "'s guess: ");
-//    }
+
+    @ParameterizedTest
+    @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
+    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(", ", player1, player2, player3));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar" })
+    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.flushOutput();
+        sut.processInput("10");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player2 + "'s guess: ");
+    }
 //
 //    @ParameterizedTest
 //    @CsvSource({ "Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar" })

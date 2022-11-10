@@ -2,6 +2,8 @@ package numberguessing.console;
 
 import numberguessing.PositiveIntegerGenerator;
 
+import java.util.stream.Stream;
+
 public final class AppModel {
     private final static String NEW_LINE = System.lineSeparator();
     public static final String SELECT_MODE_MESSAGE = "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
@@ -36,14 +38,22 @@ public final class AppModel {
             return getSinglePlayerGameProcessor(answer, 1);
         } else if (input.equals("2")) {
             output = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
-            return input2 -> {
-                output = "I'm thinking of a number between 1 and 100.";
-                return null;
-            };
+            return getMultiplayerGameProcessor();
         } else {
             completed = true;
             return null;
         }
+    }
+
+    private Processor getMultiplayerGameProcessor() {
+        return input -> {
+            Object[] players = Stream.of(input.split(",")).map(String::trim).toArray();
+            output = "I'm thinking of a number between 1 and 100." + "Enter " + players[0] + "'s guess: ";
+            return input2 -> {
+                output = "Enter " + players[1] + "'s guess: ";
+                return null;
+            };
+        };
     }
 
     private Processor getSinglePlayerGameProcessor(int answer, int tries) {
