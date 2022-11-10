@@ -310,33 +310,33 @@ public class AppModel_specs {
         assertThat(actual).contains(winner + " wins." + NEW_LINE);
     }
 
-//    @Test
-//    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        sut.flushOutput();
-//        sut.processInput("50");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
-//                + NEW_LINE + "Enter selection: ");
-//    }
-//
-//    @Test
-//    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//
-//        sut.processInput("2");
-//        sut.processInput("Foo, Bar, Baz");
-//        sut.processInput("20");
-//        sut.processInput("50");
-//        sut.processInput("3");
-//
-//        boolean actual = sut.isCompleted();
-//        assertTrue(actual);
-//    }
+    @Test
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
+                + NEW_LINE + "Enter selection: ");
+    }
+
+    @Test
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        sut.processInput("20");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
 //
 //    @Disabled
 //    @ParameterizedTest
