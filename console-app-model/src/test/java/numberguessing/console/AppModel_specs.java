@@ -163,17 +163,17 @@ public class AppModel_specs {
 
         assertThat(actual).startsWith("Correct! ");
     }
-//
-//    @Test
-//    void sut_correctly_prints_multiplayer_game_setup_message() {
-//        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-//        sut.flushOutput();
-//        sut.processInput("2");
-//
-//        String actual = sut.flushOutput();
-//
-//        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
-//    }
+
+    @Test
+    void sut_correctly_prints_multiplayer_game_setup_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("2");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+    }
 //
 //    @Test
 //    void sut_correctly_prints_multiplayer_game_start_message() {
